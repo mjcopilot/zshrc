@@ -26,6 +26,15 @@ antigen theme robbyrussell
 # Tell Antigen that you're done.
 antigen apply
 
+# To use homebrew installed stuff
+export PATH="/opt/homebrew/opt:$PATH"
+
+# To use homebrew installed python
+export PATH="/opt/homebrew/opt/python/libexec/bin:$PATH"
+
+# To use homebrew installed vim
+export PATH="/opt/homebrew/opt/vim/bin:$PATH"
+
 alias k='kubectl'
 alias ag='ag -u'
 alias debug='~/Code/debug.sh'
@@ -43,16 +52,6 @@ function right_prompt() {
 
   echo "%{$fg[$color]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}"
 }
-K8S='$(right_prompt)'
-NEWLINE=$'\n'
-PROMPT="$K8S ${NEWLINE} $PROMPT "
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
-export KUBECONFIG="$HOME/.kube/config"
-# kubeconfig per session
-file="$(mktemp -t "kubectx.XXXXXX")"
-cp "${KUBECONFIG}" "${file}"
-export KUBECONFIG="${file}"
 
 export PATH="/opt/homebrew/opt/go@1.24/bin:$PATH"
 
